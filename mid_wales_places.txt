@@ -1,0 +1,30 @@
+Mid Wales
+0 Machynlleth
+1 Tre-r-Ddol
+2 Borth
+3 Bow Street
+4 Lovesgrove
+5 Ponterwyd
+6 Aberystwyth
+7 Llanfarian
+8 Devils Bridge
+9 Llanilar
+10 Pontrhydfendigaid
+11 Tregaron
+12 Aberaeron
+13 Lampeter
+14 Llanwrda
+15 Llandovery
+16 Builth Wells
+17 Llandrindod Wells
+18 Rhayader
+19 Cross Gates
+20 Newtown
+21 Caersws
+22 Tregynon
+23 Welshpool
+24 Llanfair Caereinion
+25 Llanbrynmair
+26 Cemmaes Road
+27 Mallwyd
+28 Llangurig

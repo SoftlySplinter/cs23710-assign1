@@ -1,0 +1,3 @@
+See the man file for more details (./relocate -h or --help)
+
+It should be noted that the files are best stored in the same directory as all the links are relative to the program and not the file.

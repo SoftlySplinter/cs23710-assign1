@@ -1,0 +1,45 @@
+
+
+
+User Manual                                         RELOCATE(1.0)
+
+
+
+NNAAMMEE
+     relocate - relocate a company to a more profitable location
+
+SSYYNNOOPPSSIISS
+     rreellooccaattee [[--cc||--ss]] _f_i_l_e
+
+DDEESSCCRRIIPPTTIIOONN
+     rreellooccaattee  Runs  the  relocation  program  using the `Company
+     Description File'
+
+OOPPTTIIOONNSS
+     -c --complex
+          relocates  the  company  specified  by   the   `Company
+          Description  File'  taking  into  account the weight of
+          deliveries
+
+     -s --simple
+          relocates  the  company  specified  by   the   `Company
+          Description  File'  without  taking  into  account  the
+          weight of deliveries
+
+     -h --help
+          display this help and exit
+
+     -v --version
+          output version information and exit
+
+AAVVAAIILLAABBIILLIITTYY
+     This program will only run on Solaris  machines  with  Sparc
+     processors.
+
+AAUUTTHHOORR
+     Alexander Brown
+	 
+Alexander Brown     Last change: NOVEMBER 2010                  1
+
+
+

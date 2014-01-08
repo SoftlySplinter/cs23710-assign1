@@ -1,0 +1,170 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\geometry{
+  body={7.0in, 10.0in},
+  left=0.75in,
+  top=0.75in
+}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {Alexander Brown},
+  pdfkeywords = {},
+  pdftitle = {Alexander Brown: CS23710 - Assignment 1: Relocate Aberyswyth Dairy Company},
+  pdfsubject = {CS23710 - Assignment 1: Relocate Aberyswyth Dairy Company},
+  pdfpagemode = Default
+}
+
+\setlength\parindent{0em}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\setcounter{tocdepth}{2}
+
+\newcommand{\codepath}{src/}
+
+
+\lstset{%
+  basicstyle=\footnotesize,
+  language=C,
+  showstringspaces=false}
+
+\title{CS23710 - Assignment 1: Relocate Aberyswyth Dairy Company}
+\author{Alexander Brown}
+\begin{document}
+  \maketitle
+  \tableofcontents
+  
+  \section{Design}
+    \subsection{The Problem}
+      From the way the assignment is presented, there are two problems to solve - minimizing the distance and minimizing the cost.
+      
+      I decided it would be best to seperate the program into these two problems. The distance I chose to name "Simple Relocate" and the cost I chose to name "Complex Relocate", mainly due to the way the problem is presented.
+      
+      Also I decided on the use of command line arguments. The way to run the simple or complex relocate would be switched by these command line arguments, along with version and help information.
+      
+      
+      \subsubsection{Arguments}
+	With no arguments, the relocate program defaults to telling the user that there is a missing file operand and to use \verb+relocate -h+ to view the help information.
+	
+	With only a file operand the relocate program defaults to the Complex Relocate program.
+	
+	With options that don't exist the relocate program tells the user that there is no such option and to use \verb+relocate -h+ to view the help information.
+	
+	\begin{description}
+	  \item[Printing Help]\hfill\\
+	    \verb+relocate -h+\\
+	    \verb+relocate --help+ 
+	    
+	  \item[Version Information]\hfill\\ 
+	    \verb+relocate -v+\\
+	    \verb+relocate --version+
+	    
+	  \item[Simple Relocate]\hfill\\ 
+	    \verb+relocate -s file_path+\\
+	    \verb+relocate --simple file_path+
+	    
+	  \item[Complex Relocate]\hfill\\ 
+	    \verb+relocate -c file_path+\\
+	    \verb+relocate --complex file_path+
+	\end{description}
+	
+    \subsection{Handelling the Data Files}
+      The obvious solution to handelling the data files is through the use of structures.
+      
+      \subsubsection{The Company Description File}
+	The Company Description File is simple a file which points the program to the files which contain the actual information. It should read the first file, load the necessary information from that file, then move onto the next file and continue until it's reached the end of the company description file.
+	
+	However due to the nature of how a company works I thought it best to also have a company structure which can hold all the information needed on a company in a single structure, rather than having to keep them in method variables.
+      
+      \subsubsection{The Region File}
+	The first line of this file is merely a string to be read in.
+	
+	It is then followed by a list of locations. These I have decided it will be best to store in a seperate structure, which is then stored as an array in the region structure.
+	
+	\begin{description}
+	  \item[region]\hfill
+	    \begin{description}
+	      \item[name] The name of the region.
+	      \item[locations] The locations in this region.
+	    \end{description}
+	  \item[location]\hfill
+	    \begin{description}
+	      \item[code] The location code number.
+	      \item[name] The name of the location.
+	    \end{description}
+	\end{description}
+      
+      \subsubsection{The Roads File}
+	This file handles the data for the roads, for which a structure has already been defined. It is a simple procedure of reading in the roads as a linked list.
+	
+      \subsubsection{The Business Park File}
+	This is the only file which doesn't require a structure as the data can simply be stored in an array of intergers.
+	
+      \subsubsection{The Deliveries File}
+	The deliveries file handles all the deliveries that have to be made. Again this is best stored as a structure.
+	
+	\begin{description}
+	  \item[deliveries]\hfill
+	    \begin{description}
+	      \item[retailer] The code for the retailer.
+	      \item[location] The location code of the retailer.
+	      \item[deliveries] The number of deliveries per week.
+	      \item[weight] The weight of the delivery.
+	    \end{description}
+	\end{description}
+      
+      \subsubsection{The Running Costs File}
+	This file is only necessary for the complex relocate program, however I had it load into the company file so the information is easily available.
+    
+    \subsection{Program structure}
+      Being used to Object Orientated Programming, I took a very similar approach and segmented my program into as many parts as was possible. Whilst most files only contain one or two methods, I prefer to have such seperation to make the code both easier to read and to modify.
+      
+      I also made use of header files, holding the structures and method initializers in these header files as is typically done. Then the source files which manipulate these structures, finally a single source file to run the program holding the main method. I also used a miscellaneous library (misc.h and misc.c) to hold general methods that can be used over many files.
+  
+  \section{Further Documentation}
+    I have used Doxygen to create in-depth documentation (hence the unusual style of comments). If you wish to view any further documentation please look at the \LaTeX\  output and HTML files found in the \verb+documentation+ directory.
+  
+  \section{Review}
+  	I found this project fairly easy to work with, as the vast majority was just structure manipulation. There is one small bug in that the program cannot yet handle relative filenames. I could solve this by either using strcat, or by using macros, but did not have time to do so.
+  	  
+  \newpage
+  
+  \section{C Code}
+    \subsection{relocate.c}
+      \lstinputlisting{\codepath relocate.c}
+    
+    \subsection{simpleRelocate.h}
+      \lstinputlisting{\codepath simpleRelocate.h}
+    \subsection{simpleRelocate.c}
+      \lstinputlisting{\codepath simpleRelocate.c}
+    
+    \subsection{complexRelocate.h}
+      \lstinputlisting{\codepath complexRelocate.h}
+    \subsection{complexRelocate.c}
+      \lstinputlisting{\codepath complexRelocate.c}
+    
+    \subsection{company.h}
+      \lstinputlisting{\codepath company.h}
+    \subsection{company.c}
+      \lstinputlisting{\codepath company.c}
+    
+    \subsection{region.h}
+      \lstinputlisting{\codepath region.h}
+    \subsection{region.c}
+      \lstinputlisting{\codepath region.c}
+    
+    \subsection{delivery.h}
+      \lstinputlisting{\codepath delivery.h}
+    \subsection{delivery.c}
+      \lstinputlisting{\codepath delivery.c}
+    
+    \subsection{misc.h}
+      \lstinputlisting{\codepath misc.h}
+    \subsection{misc.c}
+      \lstinputlisting{\codepath misc.c}
+\end{document}

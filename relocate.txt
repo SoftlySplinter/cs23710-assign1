@@ -1,0 +1,32 @@
+RELOCATE(1.0)                     User Manual                    RELOCATE(1.0)
+
+
+
+[1mNAME[0m
+       relocate - relocate a company to a more profitable location
+
+[1mSYNOPSIS[0m
+       [1mrelocate [-c|-s] [4m[22mfile[0m
+
+[1mDESCRIPTION[0m
+       [1mrelocate  [22mRuns  the  relocation  program using the `Company Description
+       File'
+
+[1mOPTIONS[0m
+       -c --complex
+              relocates the company  specified  by  the  `Company  Description
+              File' taking into account the weight of deliveries
+
+       -s --simple
+              relocates  the  company  specified  by  the `Company Description
+              File' without taking into account the weight of deliveries
+
+       -h --help
+              display this help and exit
+
+       -v --version
+              output version information and exit
+
+
+
+Alexander Brown                  NOVEMBER 2010                   RELOCATE(1.0)
